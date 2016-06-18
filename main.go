@@ -9,8 +9,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 	"os/exec"
+	"strconv"
 )
 
 const (
@@ -44,6 +47,9 @@ func main() {
 	stdoutBoolPtr := flag.Bool("stdout", false, "Compile only to NASM assembly and print to stdout")
 	versionBoolPtr := flag.Bool("v", false, "Show Versionnumber, Author, „Licence“")
 	outFileStringPtr := flag.String("o", "prog", "Name of output file")
+	// Silly stuff like a http-server :D
+	httpBoolPtr := flag.Bool("http", false, "Enables http-server for code viewing")
+	portIntPtr := flag.Int("port", 8080, "Used port for http-server")
 	// turn this into an integer!
 	debugBoolPtr := flag.Bool("debug", false, "Print debug information e.g. labelStack, cryptic numbers and other stuff. This option renders the output useless.")
 
@@ -113,6 +119,23 @@ func main() {
 			fmt.Printf("%v", outputString)
 		}
 
+		if *httpBoolPtr == true { // bzw. *httpBoolptr
+			// first clojure of my life <3
+			http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+				printHttpOutput(w, r, outputString)
+			})
+
+			if *portIntPtr != 8080 {
+				portStr := ":" + strconv.Itoa(*portIntPtr)
+				fmt.Println("Serving on Port:", portStr)
+
+				log.Fatal(http.ListenAndServe(portStr, nil))
+			} else {
+				fmt.Println("Serving on Port 8080")
+				log.Fatal(http.ListenAndServe(":8080", nil))
+			}
+		}
+
 		// write Code to assembly file
 		if *assemblyBoolPtr == true {
 			outputFile, err := os.Create("./" + fileName + ".asm")
@@ -158,4 +181,8 @@ func main() {
 		}
 	}
 
+}
+
+func printHttpOutput(w http.ResponseWriter, r *http.Request, outputCode string) {
+	fmt.Fprintf(w, "%s", outputCode)
 }
