@@ -28,7 +28,7 @@ import (
 type programCode struct {
 	intMap     map[string]int64
 	stringMap  map[string]string
-	strCounter int64 // 64 because <__missingPrgName__> is a 64bit compiler :P
+	strCounter int64 // 64 because pygoas is a 64bit compiler :P
 
 	commentFlag    bool
 	labelFlag      bool
@@ -461,7 +461,7 @@ func (pc *programCode) createForCheck(loopVar string) {
 	code := "\n\tmov rax, [" + loopVar + "] \t; for-loop\n"
 	code += "\tdec rax\n\tmov [" + loopVar + "], rax\n"
 	forJmpBackLabel := pc.popLastLabel()
-	code += "\tcmp rax, 0\n\tjle " + forJmpBackLabel + "\t; if zero close loop\n\t;; missing code\n" // Fix this line
+	code += "\tcmp rax, 0\n\tjle " + forJmpBackLabel + "\t; if zero close loop\n\t \n" // Fixed this line
 
 	pc.appendCode(code)
 }
