@@ -292,6 +292,16 @@ func (pc *programCode) createJumpBack() {
 	pc.indentLevel--
 }
 
+// createResetLoopVar appends a code snippet to pc.code which resets a
+// loopVarN to a given value.
+func (pc *programCode) createResetLoopVar(name string, val int) {
+	valStr := strconv.Itoa(val)
+	code := ""
+	code += "\tmov rax, " + valStr + "\t;reset LoopVar to" + valStr + "\n"
+	code += "\t mov [" + name + "], rax;\t done\n"
+	pc.appendCode(code)
+}
+
 // The compiler has a stack to manage nested functions, conditions and
 // loops. It is still a so called Brechstangen-Methode due to the
 // inflexibility of Go's slices compared to Python's lists.

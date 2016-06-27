@@ -18,9 +18,9 @@ import (
 
 const (
 	NAME          = "pygoas"
-	VERSION       = "bugful27.06.2016.1"
+	VERSION       = "bugful27.06.2016.2"
 	YEAR          = "2016"
-	versionnumber = 0.1
+	versionnumber = "0.1"
 	AUTHOR        = "Sebastian Kind"
 	EMAIL         = "mail@sebastiankind.de"
 	LICNECE       = "Yolo / NO WARRANTY; USE THIS PROGRAM ON YOUR OWN RISK" //#R?

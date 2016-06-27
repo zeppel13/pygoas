@@ -227,9 +227,9 @@ ParserLoop:
 			tokens[i+1] = strings.TrimRight(tokens[i+1], ":")
 			tokens[i+1] = strings.TrimRight(tokens[i+1], ")")
 			tokens[i+1] = strings.TrimLeft(tokens[i+1], "(")
-			loopVar, _ := strconv.Atoi(tokens[i+1])
-			loopVar++
-			strLoopVar := strconv.FormatInt((int64)(loopVar), 10) // Why not: tokens[i+1] ??? :D
+			loopVarVal, _ := strconv.Atoi(tokens[i+1])
+			loopVarVal++                                             // No clue why 'loopVarVal++'
+			strLoopVar := strconv.FormatInt((int64)(loopVarVal), 10) // Why not: tokens[i+1] ??? :D
 
 			code.labelCounter++
 			strLabelCounter := strconv.FormatInt(code.labelCounter, 10)
@@ -243,8 +243,9 @@ ParserLoop:
 
 			code.pushLastLabel(strLabelName)
 			code.createJumpBackLabel("forReturn")
+			code.createResetLoopVar(strLoopVarName, loopVarVal)
 			code.createLabel(strLabelName)
-			code.addVar(strLoopVarName, (int64)(loopVar))
+			code.addVar(strLoopVarName, (int64)(loopVarVal))
 			code.initVar(strLoopVarName, strLoopVar)
 			code.createForCheck(strLoopVarName)
 		} else if v == "#endif" {

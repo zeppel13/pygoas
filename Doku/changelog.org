@@ -4,5 +4,6 @@
 - =-port %d=  Flag für den Port. Der Standardwert ist 8080.
 * Montag, 27. Juni 2016
 - Interner Name in pygoas geändert (zuvor: <still-no-name/> (sic!))
+- (15:40) Schleifen in Schleifen funktioneren jetzt
 
   
