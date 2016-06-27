@@ -5,5 +5,6 @@
 * Montag, 27. Juni 2016
 - Interner Name in pygoas geändert (zuvor: <still-no-name/> (sic!))
 - (15:40) Schleifen in Schleifen funktioneren jetzt
-
+- viele neue Kommentare in main.go und code.go
+- kleinere Stellen überarbeitet. Rechtschreibfehler...
   

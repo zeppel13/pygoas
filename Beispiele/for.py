@@ -5,9 +5,9 @@ WS = 32
 a = 90
 
 for (3):
-    print ("Dort", NL)
+    print ("Außen", NL)
     for (4):
-        print ("Hi", NL)
+        print ("----> Innen", NL)
         #endfor
     #endfor
 print (NL)
