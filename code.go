@@ -1,5 +1,5 @@
 /* code.go
- * This file is part of <still-no-name/>
+ * This file is part of pygoas
  *
  * This is probably going to be a simple Mini-Python to NASM-assembly compiler
  * written by Sebastian Kind 2nd Janury -- 20th May 2016

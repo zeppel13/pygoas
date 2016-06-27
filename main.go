@@ -1,6 +1,6 @@
 /* main.go
- * This file is part of <still-no-name/>
- * This (<still-no-name/> is probably going to be a simple Mini-Python to NASM-assembly compiler
+ * This file is part of pygoas
+ * This (pygoas is probably going to be a simple Mini-Python to NASM-assembly compiler
  * written by Sebastian Kind 2nd Janury -- 20th May 2016
  */
 
@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	NAME          = "<still-no-name/>"
+	NAME          = "pygoas"
 	VERSION       = "bugful20.05.2016.1"
 	YEAR          = "2016"
 	versionnumber = 0.1
