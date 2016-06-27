@@ -2,4 +2,7 @@
 - =-http= Flag für den Http-Server und Http-Server hinzugefügt, um
   sich den Code im Browser über localhost:8080/ anzusehen.
 - =-port %d=  Flag für den Port. Der Standardwert ist 8080.
+* Montag, 27. Juni 2016
+- Interner Name in pygoas geändert (zuvor: <still-no-name/> (sic!))
+
   
