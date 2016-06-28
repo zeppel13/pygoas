@@ -23,7 +23,7 @@ const (
 	versionnumber = "0.1"
 	AUTHOR        = "Sebastian Kind"
 	EMAIL         = "mail@sebastiankind.de"
-	LICNECE       = "Yolo / NO WARRANTY; USE THIS PROGRAM ON YOUR OWN RISK" //#R?
+	LICENCE       = "Yolo / NO WARRANTY; USE THIS PROGRAM AT YOUR OWN RISK" //#R?
 )
 
 // debug levels
@@ -41,7 +41,8 @@ var (
 
 func main() {
 
-	// IDEA: -32bit: A 32 bit modus with eax instead rax. NO?
+	// IDEA: -32bit: A 32 bit mode with eax instead rax. --> Nope
+	// IDEA: 32bitArm(v6) mode? --> Nope
 
 	var code programCode
 
@@ -82,6 +83,9 @@ func main() {
 		os.Exit(1)
 	} else if len(tail) >= 1 {
 
+		// #HowToUse Go?
+		// reserve space for a slice, similar to Python's lists
+
 		files := make([]*os.File, 0)
 
 		// all input file pointers are stored in files (slice). This
@@ -91,11 +95,12 @@ func main() {
 			file, err := os.Open(filename)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "%v\n", err)
-				os.Exit(1)
+				os.Exit(1) // Error
 			}
 			files = append(files, file)
-			defer file.Close() // go's defer releases an action at the end of a function
+			defer file.Close() // Go's defer expressoin() releases an action at the end of a function
 		}
+
 		// How does this compiler now work?
 		// Translation: TOKENS ---¯¯_*MaGiC*_¯¯---> ASSEMBLY
 		// For more information consult the source file parser.go
@@ -127,10 +132,11 @@ func main() {
 		// outputstring represents the final assembly program
 		outputString := fmt.Sprintf(code.code)
 
-		// Now handle the diverse output formats on different flag
-		// formats on different flag meanings.
+		// Now handle the diverse output formats of different flag
+		// formats and their meanings.
 
 		// print verions legal blabla stuff
+		// -v
 		if *versionBoolPtr {
 			fmt.Println("This is", NAME, "written by", AUTHOR, "in", YEAR)
 			fmt.Println("Build", VERSION)
@@ -142,6 +148,7 @@ func main() {
 		// this a easy way to check the results or find errors in the
 		// assembly logic
 
+		// --stdout
 		if *stdoutBoolPtr == true {
 			*linkBoolPtr, *compileBoolPtr = false, false
 			fmt.Printf("%v", outputString)
@@ -160,6 +167,7 @@ func main() {
 		// read the code in your Browser with Chrome with:
 		// http://hostname_or_just_localhost:8080/anything
 
+		//--http
 		if *httpBoolPtr == true { // bzw. *httpBoolptr
 			// first clojure of my life <3
 
@@ -188,6 +196,7 @@ func main() {
 		//		ld -o program ./outfile.o
 		//  Also consider the --stdout flag
 
+		// -s
 		if *assemblyBoolPtr == true {
 			outputFile, err := os.Create("./" + fileName + ".asm")
 
