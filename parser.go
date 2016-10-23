@@ -35,7 +35,7 @@ func tokenize(file *os.File) []string {
 	rawCode += " EOF " // it's not the real EOF value
 
 	tokens := strings.Fields(rawCode)
-	debugFlag := false
+	debugFlag := false //Moment; What? FIXME
 	if debugFlag == true {
 		for _, v := range tokens {
 			fmt.Println(v)
@@ -100,11 +100,13 @@ ParserLoop:
 
 		v := tokens[i]
 		if v == "#" {
-			code.commentFlag = !code.commentFlag
+			code.commentFlag = true
 			continue ParserLoop
+
 		} else if v == "NEWLINE" && code.commentFlag {
 			code.commentFlag = false
-
+		} else if code.commentFlag {
+			continue
 		} else if v == "=" { // variable assignment with *easy math
 			if stringInSlice(tokens[i+2], mathOperators) {
 				code.addVar(tokens[i-1], 0)
