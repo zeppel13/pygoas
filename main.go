@@ -18,7 +18,7 @@ import (
 
 const (
 	NAME          = "pygoas"
-	VERSION       = "bugful27.06.2016.2"
+	VERSION       = "bugful23.10.2016"
 	YEAR          = "2016"
 	versionnumber = "0.1"
 	AUTHOR        = "Sebastian Kind"
@@ -88,7 +88,7 @@ func main() {
 
 		files := make([]*os.File, 0)
 
-		// all input file pointers are stored in files (slice). This
+		// all file pointers are stored in files (slice). This
 		// is done by the following for-loop
 
 		for _, filename := range tail {
@@ -101,7 +101,7 @@ func main() {
 			defer file.Close() // Go's defer expressoin() releases an action at the end of a function
 		}
 
-		// How does this compiler now work?
+		// Now tell me, how does this compiler work?
 		// Translation: TOKENS ---¯¯_*MaGiC*_¯¯---> ASSEMBLY
 		// For more information consult the source file parser.go
 
@@ -116,15 +116,15 @@ func main() {
 			}
 
 			if debug == 2 {
-				// useful if nothing is compiled
-				// most errors can be found in a corrupt tokenList
+				// This is useful if compilation fails
+				// most errors occure in a corrupt tokenList
 				for _, v := range tokenList {
 					fmt.Println(v)
 				}
 			}
 		}
 
-		// Do you remember the programCode “Object“ code from the beginning of this file?
+		// Do you remember the programCode “Object“ code from the beginning of code.go?
 		// This is what it takes to convert tokens to some interpretation of assembly
 
 		code = translate(tokenList)
@@ -135,8 +135,9 @@ func main() {
 		// Now handle the diverse output formats of different flag
 		// formats and their meanings.
 
-		// print verions legal blabla stuff
+		// print version legal blabla stuff
 		// -v
+
 		if *versionBoolPtr {
 			fmt.Println("This is", NAME, "written by", AUTHOR, "in", YEAR)
 			fmt.Println("Build", VERSION)
@@ -164,7 +165,7 @@ func main() {
 		// golang stuff. Don't forget the handler printHttpOutput(...)
 		// at the end of this file.
 
-		// read the code in your Browser with Chrome with:
+		// read the code in your Browser with:
 		// http://hostname_or_just_localhost:8080/anything
 
 		//--http
@@ -191,10 +192,10 @@ func main() {
 
 		// write Code to assembly file is good for debugging if NSAM wont
 		// do its job. Then make changes with vim directly in the
-		// assembly file compile with NASM by Hand with
+		// assembly file compile with NASM by Hand using these commands:
 		// 		nasm -felf64 -o outfile.o ./infile.asm
 		//		ld -o program ./outfile.o
-		//  Also consider the --stdout flag
+		//  Also consider the --stdout flag of pygoas
 
 		// -s
 		if *assemblyBoolPtr == true {

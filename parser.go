@@ -35,7 +35,7 @@ func tokenize(file *os.File) []string {
 	rawCode += " EOF " // it's not the real EOF value
 
 	tokens := strings.Fields(rawCode)
-	debugFlag := false //Moment; What? FIXME
+	debugFlag := false //Moment; What? FIXME // HI THIS IS JAN: „hOLLA, AMIGOS. DOSN!T WORK. MUCH NOOB“ AND PIZZA111 HANK I C U ON FRIDAY“
 	if debugFlag == true {
 		for _, v := range tokens {
 			fmt.Println(v)
