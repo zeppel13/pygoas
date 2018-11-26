@@ -51,13 +51,13 @@ func tokenize(file *os.File) []string {
 // programCode is a struct of code.go
 
 // This function manages the main work of this program. It controlls a
-// central programCode instance and filles it with content
+// central programCode instance and fills it with content
 
 func translate(tokens []string) programCode {
 	code := newProgramCode()
 	code.createStart() // assembly header must be created
 
-	// slices of protected words and sign follow here:
+	// slices of protected words and signs and runes follow here:
 
 	keywords := []string{
 		"for", "while", "def", "if", "return", "#endif", "#endfor",
@@ -81,8 +81,8 @@ func translate(tokens []string) programCode {
 	}
 
 	// still todo
-	// probably requieres major change in the value passing structure
-	// »Mehr Register wagen.« :)
+	// this probably requieres a major change in the value passing structure
+	// »Mehr Register wagen.« :) go read -> AMD System 64 Application Binary Interface(ABI)
 	//
 	// boolOperators := []string{"and", "or", "xor", "not"} the result
 	// of an operator should be returned and stored into rax
@@ -140,7 +140,7 @@ ParserLoop:
 			}
 
 		} else if strings.HasSuffix(v, "=") && v != "=" {
-			// every abbreviation ends with '='
+			// every arithmetic shorthand notation ends with '='
 			// If you don't believe me: "+=", "-=", "*=", "%="
 			switch v {
 			case "+=":
@@ -156,7 +156,7 @@ ParserLoop:
 
 			}
 
-		} else if v == "print" { // print is a builtin function, which requieres special magic
+		} else if v == "print" { // print is a builtin function, which requieres special assembly magic
 			argSlice := getArgSlice(i+1, tokens)
 			for _, arg := range argSlice {
 				if strings.HasPrefix(arg, "\"") && strings.HasSuffix(arg, "\"") {
@@ -187,8 +187,8 @@ ParserLoop:
 			}
 			code.createLabel(tokens[i+1])
 			// some random thoughts
-			// + safe localvalues to .bss ? like funcFoo1Locals : resb 32 ; enough space for 4 64bit values
-			// copy args into global variables (bad style -- but the only)
+			// + save localvalues to .bss ? like funcFoo1Locals : resb 32 ; enough space for 4 64bit values
+			// copy args into global variables (bad style -- but the only one i can think of the moment)
 			// return max 2 vars: rax, rbx
 		} else if v == "return" {
 			// necessarry to end a function
@@ -198,7 +198,7 @@ ParserLoop:
 			// Conditions work fine
 			tokens[i+3] = strings.TrimSuffix(tokens[i+3], ":")
 			code.labelCounter++
-			strLabelCounter := strconv.FormatInt(code.labelCounter, 10)
+			strLabelCounter := strconv.FormatInt(code.labelCounter, 10) //Noob fmt.Sprintf("%d", value) would have achieved the same result
 			labelName := "ifLabel" + strLabelCounter
 
 			code.createCmp(tokens[i+1], tokens[i+3])
@@ -225,6 +225,7 @@ ParserLoop:
 			// use a for-loop!
 
 		} else if v == "for" {
+			// implementing loops easy peasy lemon fucking squeezy took me a month of rethinking every day
 
 			tokens[i+1] = strings.TrimRight(tokens[i+1], ":")
 			tokens[i+1] = strings.TrimRight(tokens[i+1], ")")
@@ -251,15 +252,15 @@ ParserLoop:
 			code.initVar(strLoopVarName, strLoopVar)
 			code.createForCheck(strLoopVarName)
 		} else if v == "#endif" {
-			// necessary to end a If-body
+			// necessary to end a If-block
 			code.createJumpBack()
 			//code.labelFlag = false
 		} else if v == "#endfor" {
-			// necessarry to end a for-body
+			// necessarry to end a for-block
 			code.createJumpBack()
 
-		} else if i > 1 && i+1 < len(tokens) {
-			// This lets the final progam to execute a function.
+		} else if i > 1 && i+1 < len(tokens) { // VERY IMPORTANT PAY ATTENTION THIS calls arbirtray functions and i am proud of it
+			// This lets the final progam execute a function.
 			// this allows to run functions inside (mini)Python
 
 			// How dows this work?  If v doesn't fit into any
@@ -281,14 +282,14 @@ ParserLoop:
 			}
 
 		} else if v == "INDENT" {
-			/* Python's are totally ignored */
+			/* Python's are totally ignored */ //?
 			// this will come someday in the Futute(
 		} else if v == "NEWLINE" {
 			continue ParserLoop
 			// When the line is over, the next command/line will be translated
 		} else if v == "EOF" {
 			// A fake EOF (not the real one), must be the last token
-			// in []tokens, in order to finishe the program
+			// in []tokens, in order to finish the program
 
 			code.createExit("0") // Return value.
 			// Read this value with
@@ -297,7 +298,7 @@ ParserLoop:
 
 			// closing work
 			code.createAllFunctions()
-			code.createBss()
+			code.createBss() // obviously some higher assembly concept you mere fools just wouldn't grasp
 			code.createData()
 			return code
 		}
@@ -315,14 +316,14 @@ func stringInSlice(s string, list []string) bool {
 	return false
 }
 
-// this functions returns a list or arguments from an argument statement in the minipython code
+// this functions returns a list of arguments from an argument statement in the minipython code
 // for example:
 // print (a, 12, "hallo")
 // return sclice of type []string holding {"Hallowelt", "3", "4", "hallo"}
 
 // getArgSlice (...) makes a slice of strings from a given argument list
 
-// getArgSlice(...) must know the tokenlist and the actual positon inside it
+// getArgSlice(...) must know the tokenlist and the actual position inside it
 func getArgSlice(i int, tokens []string) []string {
 	oldi := i
 	argString := ""

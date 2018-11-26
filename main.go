@@ -160,7 +160,7 @@ func main() {
 		// my decision. :-P Nonetheless all the net/http packages are
 		// baked into my compiler, what increases the file size. To
 		// not sacrify uploading speed over slow #FirstWorldProblems
-		// Upload links, is surely possible to just ommit anything
+		// Upload links, it's surely possible to just ommit anything
 		// what looks like http, networking or other neat l'internet
 		// golang stuff. Don't forget the handler printHttpOutput(...)
 		// at the end of this file.
@@ -190,7 +190,7 @@ func main() {
 			}
 		}
 
-		// write Code to assembly file is good for debugging if NSAM wont
+		// writing Code to assembly file is good for debugging if NSAM wont
 		// do its job. Then make changes with vim directly in the
 		// assembly file compile with NASM by Hand using these commands:
 		// 		nasm -felf64 -o outfile.o ./infile.asm
