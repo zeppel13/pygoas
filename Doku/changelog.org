@@ -7,4 +7,5 @@
 - (15:40) Schleifen in Schleifen funktioneren jetzt
 - viele neue Kommentare in main.go und code.go
 - kleinere Stellen überarbeitet. Rechtschreibfehler...
-  
+* Dienstag, 04. Dezember 2018
+- Code auf GitHub hochgeladen
