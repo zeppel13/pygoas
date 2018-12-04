@@ -24,6 +24,8 @@ Im Verzeichnis Beispiele befinden sich Programme, die sich mit dem Compiler übe
 - inline Assemblercode zu verwenden, der vom Compiler direkt in die Ausgabe eingefügt wird
 - Kommentarte die bis zum Ende der Zeile alle Symbole ignorieren
 
+Außerdem befindet sich ein HTTP-Server im Compilercode, der angedacht war bei Presentationen das compilierte Programm auf allen Workstations eines Computerraums, CIP-Pools, LAN, etc anzuzeigen. 
+
 
 ```
 NL = 10 # Neue Zeile
