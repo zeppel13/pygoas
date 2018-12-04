@@ -128,6 +128,7 @@ Lesbarkeit selbständig kommentiert.
 
 Das ist Liste aller Flags, die der Compiler bei Falscheingabe ausgibt:
 
+```
 Usage of ./compiler:
   -c	This runs the nasm compiler (default true)
   -debug
@@ -138,7 +139,7 @@ Usage of ./compiler:
   -s	Compile only to NASM assembly (default true)
   -stdout
     	Compile only to NASM assembly and print to stdout
-
+```
 
 Ende der Einleitung
 
