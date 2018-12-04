@@ -46,7 +46,7 @@ Im Folgen füge ich hier die alte readme.txt ein die auch im Unterverzeichnis Do
 
 #+Date: 20.05.2015
 #+Author: Sebastian Kind
-#+EMail: mail@sebastiankind.de
+#+EMail: mail Ð sebastiankind.de
 
 
 Mein Compiler (Noch ohne Namen) übersetzt sehr einfachen Pythoncode
