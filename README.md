@@ -1,9 +1,9 @@
 # pygoas
 Ein Schüler baut einen Compiler
 
-Pygoas übersetzt eine sehr einfache an Python angelehnte Sprache in NASM-Linux-AMD64 Assembler und kompiliert diese mit NASM und LD zu einer ausführbarem ELF64 das auf Linux läuft. Dieses Programm habe ich hauptsächlich während der Schulzeit und mitten in der Nacht zwischen Neujahr und Mai 2016 in Go geschrieben. Die Idee mich an einem kleinen Compiler zu versuchen, kam mir, als ich versuchte einen Programmierbaren Taschenrechner mit meinem dünnen Assemblerwissen zu verbinden. Das Projekt zeigt, dass man mit genug Kreativität, Verstand und Koffein auch als Schüler einen Compiler eigener Art „entwickeln“ kann.
+Pygoas übersetzt eine sehr einfache an Python angelehnte Sprache in NASM-Linux-AMD64 Assembler und kompiliert diese mit NASM und LD zu einer ausführbarem ELF64-Programm, das auf Linux läuft. Die Idee mich an einem kleinen Compiler zu versuchen, kam mir, als ich versuchte einen Programmierbaren Taschenrechner mit meinem dünnen Assemblerwissen zu verbinden. Das Projekt zeigt, dass man mit genug Kreativität, Verstand und Koffein auch als Schüler einen Compiler eigener Art „entwickeln“ kann.  Dieses Programm habe ich hauptsächlich während der Schul- und Freizeit und mitten in der Nacht zwischen Neujahr und Mai 2016 in Go geschrieben.
 
-Ursprünglich war das Projekt auf https://sebastiankind.de/pygoas.git gehostet, wo es auch weiterhin abrufbar bleibt. Zwecks besserem Zugriff lade ich meinen Code auf GitHub hoch.
+Ursprünglich war das Projekt auf https://sebastiankind.de/pygoas.git gehostet, wo es auch weiterhin abrufbar bleibt. Zwecks besserer Einsicht lade ich meinen Code auf GitHub hoch.
 
 
 
