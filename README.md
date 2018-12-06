@@ -86,7 +86,7 @@ Selbst kompilieren mit Go geht ganz einfach:
 	cd ./compiler
 	go build
 
-Da go Platformunabhängig ist, kann mein Compiler auch auf anderen
+Da go platformunabhängig ist, kann mein Compiler auch auf anderen
 System als Linux x86_64 benutzt werden, jedoch schränken sich die
 möglichen Kommandos auf
 
