@@ -71,7 +71,7 @@ oder auch einfach ins Terminal geben mit
 
 	./compiler --stdout ./input.py | less
 
-Es wird auffalen, dass der Compiler den Assemblercode zur besseren
+Es wird auffallen, dass der Compiler den Assemblercode zur besseren
 Lesbarkeit selbständig kommentiert.
 
 	
