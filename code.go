@@ -372,10 +372,10 @@ func (pc *programCode) createResetLoopVar(name string, val int) {
 // of a running program.
 
 // A generic funtion to let the stack grow and shrink is indispensable
-// for a MiniPython program which consists of a lot branching like
+// for a MiniPython program which consists of a lot branching for example
 // conditions, loops, functions. The sad trueth is that a limited
 // brechstangen-code sets the borders of a MiniPython system.
-// Branching should work good enough with eight stack layers.
+// Branching should work good enough within eight stack layers.
 
 func (pc *programCode) pushLastLabel(name string) {
 
