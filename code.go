@@ -365,7 +365,7 @@ func (pc *programCode) createResetLoopVar(name string, val int) {
 // The compiler has a stack to manage nested functions, conditions and
 // loops. It is still a so called Brechstangen-Methode due to the
 // inflexibility of Go's slices compared to Python's lists. Slices
-// refer to a underlying array of something. They are basicly a pointer
+// refer to an underlying array of something. They are basically a pointer
 // to the real chunk of date used, which has some dynamic aspects.
 
 // pc.LastLabel[n] represents the postion of a label in the hierarchy
